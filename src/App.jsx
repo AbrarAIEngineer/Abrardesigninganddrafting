@@ -102,7 +102,7 @@ const recentProjects = [
     model: null,
   },
   {
-    photo: "/projects/project-2.webp",
+    photo: "/projects/project-2.jpg",
     name: "Auditorium",
     location: "Canberra, Australia",
     year: "2026",
