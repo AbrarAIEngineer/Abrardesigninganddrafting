@@ -31,7 +31,7 @@ const COLORS = {
   border: "rgba(31,41,51,0.10)",
   borderHover: "rgba(37,99,235,0.35)",
 };
-const NAV_ITEMS = ["Services", "Portfolio", "About", "Contact"];
+const NAV_ITEMS = ["Projects", "Services", "Portfolio", "About", "Contact"];
 
 function useInView(threshold = 0.12) {
   const ref = useRef(null);
@@ -84,6 +84,45 @@ const processSteps = [
   { num: "02", title: "Define", desc: "Confirm scope, structure, assumptions, and approach before work begins." },
   { num: "03", title: "Develop", desc: "Deliver content progressively with regular reviews and tracked changes via OneDrive." },
   { num: "04", title: "Refine", desc: "Incorporate consolidated feedback and issue final, clean documentation." },
+];
+
+// ─── RECENT PROJECTS ────────────────────────────────────────────────
+// Replace every value below with your real project details.
+// Photos: put the files in  public/projects/  (e.g. public/projects/project-1.webp)
+//         ~1600px wide, WebP or JPG, under 250 KB each.
+// model:  optional — one of your drawings (e.g. IMG2) shown as a small inset on the photo.
+const recentProjects = [
+  {
+    photo: "/projects/project-1.png",
+    name: "Law College",
+    location: "Canberra, Australia",
+    year: "2026",
+    type: "University",
+    scope: ["Shop Drawings"],
+    model: null,
+  },
+  {
+    photo: "/projects/project-2.webp",
+    name: "PROJECT NAME 2",
+    location: "City, Country",
+    year: "2025",
+    type: "Healthcare",
+    size: "0,000 m² · 0 levels",
+    scope: ["Plant room coordination", "AHU & pipework modelling", "Equipment schedules"],
+    client: "Delivered for: Consultant / Contractor name",
+    model: null,
+  },
+  {
+    photo: "/projects/project-3.webp",
+    name: "PROJECT NAME 3",
+    location: "City, Country",
+    year: "2025",
+    type: "Residential Apartments",
+    size: "0,000 m² · 0 levels",
+    scope: ["Ventilation design", "AutoCAD layouts", "QA review of drawings"],
+    client: "Delivered for: Consultant / Contractor name",
+    model: null,
+  },
 ];
 
 const portfolioItems = [
@@ -310,6 +349,57 @@ export default function App() {
             </div>
             <div style={{ position: "absolute", top: -20, right: -20, width: 120, height: 120, borderRadius: 16, border: `1px solid rgba(37,99,235,0.2)`, background: "rgba(37,99,235,0.05)", zIndex: -1 }}/>
             <div style={{ position: "absolute", bottom: -16, left: -16, width: 80, height: 80, borderRadius: 12, background: `linear-gradient(135deg, rgba(245,158,11,0.15), rgba(6,182,212,0.1))`, border: `1px solid rgba(245,158,11,0.2)`, zIndex: -1 }}/>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" style={{ padding: "90px 28px", background: COLORS.bg, borderTop: `1px solid ${COLORS.border}` }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{ marginBottom: 44, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
+              <div>
+                <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", color: COLORS.cyan, letterSpacing: "2px", textTransform: "uppercase", marginBottom: 12 }}>Recently Completed</div>
+                <h2 style={{ fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 800, margin: "0 0 12px", letterSpacing: "-1px" }}>Real Buildings, Delivered</h2>
+                <p style={{ fontSize: 17, color: COLORS.textMid, maxWidth: 620, lineHeight: 1.75, margin: 0 }}>Projects where my mechanical design and drafting went from model to site.</p>
+              </div>
+              <button onClick={() => scrollTo("contact")} style={{ padding: "12px 22px", borderRadius: 10, cursor: "pointer", background: "transparent", color: COLORS.accent, border: `1.5px solid ${COLORS.borderHover}`, fontFamily: "'Sora', sans-serif", fontSize: 14, fontWeight: 600 }}>
+                Have a similar project? →
+              </button>
+            </div>
+          </FadeIn>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+            {recentProjects.map((p, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <article style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${COLORS.border}`, background: COLORS.bgCard, height: "100%", transition: "all 0.3s ease" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = COLORS.borderHover; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 24px 60px rgba(37,99,235,0.12)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = COLORS.border; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}>
+                  <div style={{ position: "relative", aspectRatio: "16/10", background: COLORS.bgCardHover }}>
+                    <img src={p.photo} alt={`${p.name}, ${p.location} — ${p.type}`} loading="lazy"
+                      onError={e => { e.currentTarget.style.visibility = "hidden"; }}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
+                    <div style={{ position: "absolute", top: 12, left: 12, background: "rgba(255,252,245,0.94)", borderRadius: 6, padding: "5px 10px", border: `1px solid ${COLORS.border}` }}>
+                      <span style={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", color: COLORS.accent, letterSpacing: "0.5px", textTransform: "uppercase" }}>{p.type}</span>
+                    </div>
+                    {p.model && (
+                      <img src={p.model} alt={`${p.name} mechanical model`} loading="lazy"
+                        style={{ position: "absolute", right: 12, bottom: 12, width: "34%", aspectRatio: "4/3", objectFit: "cover", borderRadius: 8, border: "2px solid #fff", boxShadow: "0 8px 24px rgba(31,41,51,0.25)", background: "#fff" }}/>
+                    )}
+                  </div>
+                  <div style={{ padding: "20px 22px 22px" }}>
+                    <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 4px", letterSpacing: "-0.3px" }}>{p.name}</h3>
+                    <div style={{ fontSize: 12, fontFamily: "'JetBrains Mono', monospace", color: COLORS.textLight, marginBottom: 14 }}>{p.location} · {p.year} · {p.size}</div>
+                    <ul style={{ listStyle: "none", padding: 0, margin: "0 0 16px" }}>
+                      {p.scope.map((s, j) => (
+                        <li key={j} style={{ display: "flex", gap: 8, fontSize: 14, lineHeight: 1.7, color: COLORS.textMid }}>
+                          <span style={{ color: COLORS.cyan, fontWeight: 700 }}>✓</span>{s}
+                        </li>
+                      ))}
+                    </ul>
+                    <div style={{ fontSize: 12, color: COLORS.textLight, paddingTop: 14, borderTop: `1px solid ${COLORS.border}` }}>{p.client}</div>
+                  </div>
+                </article>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
