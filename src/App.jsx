@@ -18,12 +18,12 @@ const BUSINESS = {
   name: "MechBuilds",
   tagline: "Mechanical Design · Drafting · Coordination",
   region: "New Zealand & Australia",      // where you take on work
-  phone: "",                               // e.g. "+64 21 000 0000"
-  email: import.meta.env.VITE_CONTACT_EMAIL || "", // e.g. "projects@mechbuilds.co.nz"
-  location: "",                            // e.g. "Wellington, New Zealand"
+  phone: "+64-225680834",                               // e.g. "+64 21 000 0000"
+  email: "mohammed.ahmed@mechbuilds.com", // e.g. "projects@mechbuilds.co.nz"
+  location: "Auckland, New Zealand",                            // e.g. "Wellington, New Zealand"
   nzbn: "",                                // e.g. "9429000000000"
   linkedin: "",                            // full URL to the company LinkedIn page
-  hours: "",                               // e.g. "Mon–Fri, 8am–5pm NZT"
+  hours: "Mon–Fri, 8am–5pm NZT",                               // e.g. "Mon–Fri, 8am–5pm NZT"
 };
 
 const C = {
