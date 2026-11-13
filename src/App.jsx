@@ -23,7 +23,7 @@ const BUSINESS = {
   location: "Auckland, New Zealand",                            // e.g. "Wellington, New Zealand"
   nzbn: "",                                // e.g. "9429000000000"
   linkedin: "",                            // full URL to the company LinkedIn page
-  hours: "Mon–Fri, 8am–5pm NZT",                               // e.g. "Mon–Fri, 8am–5pm NZT"
+  hours: "",                               // e.g. "Mon–Fri, 8am–5pm NZT"
 };
 
 const C = {
